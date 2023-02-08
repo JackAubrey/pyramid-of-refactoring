@@ -1,6 +1,9 @@
-package pl.refactoring.interpreter.legacy;
+package pl.refactoring.interpreter.legacy.specs;
 
-public class AndSpec implements Spec{
+import pl.refactoring.interpreter.legacy.RealEstate;
+import pl.refactoring.interpreter.legacy.Spec;
+
+public class AndSpec implements Spec {
     private final Spec firstSpec;
     private final Spec secondSpec;
 
@@ -9,6 +12,7 @@ public class AndSpec implements Spec{
         this.secondSpec = secondSpec;
     }
 
+    @Override
     public boolean isSatisfiedBy(RealEstate estate) {
         return firstSpec.isSatisfiedBy(estate) && secondSpec.isSatisfiedBy(estate);
     }

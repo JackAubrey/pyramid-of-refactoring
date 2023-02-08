@@ -1,8 +1,8 @@
-package pl.refactoring.interpreter.legacy.spec;
+package pl.refactoring.interpreter.basement.specs;
 
-import pl.refactoring.interpreter.legacy.EstateMaterial;
-import pl.refactoring.interpreter.legacy.RealEstate;
-import pl.refactoring.interpreter.legacy.Spec;
+import pl.refactoring.interpreter.basement.EstateMaterial;
+import pl.refactoring.interpreter.basement.RealEstate;
+import pl.refactoring.interpreter.basement.Spec;
 
 public class MaterialSpec implements Spec {
     private final EstateMaterial material;

@@ -1,4 +1,4 @@
-package pl.refactoring.interpreter.legacy.spec;
+package pl.refactoring.interpreter.legacy.specs;
 
 import pl.refactoring.interpreter.legacy.RealEstate;
 import pl.refactoring.interpreter.legacy.Spec;

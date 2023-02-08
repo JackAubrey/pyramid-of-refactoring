@@ -1,7 +1,8 @@
 package pl.refactoring.interpreter.legacy;
 
-import pl.refactoring.interpreter.legacy.spec.BelowAreaSpec;
-import pl.refactoring.interpreter.legacy.spec.MaterialSpec;
+import pl.refactoring.interpreter.legacy.specs.AndSpec;
+import pl.refactoring.interpreter.legacy.specs.BelowAreaSpec;
+import pl.refactoring.interpreter.legacy.specs.MaterialSpec;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -33,7 +34,7 @@ public class RealEstateFinder {
         return bySpec(new MaterialSpec(material));
     }
 
-    public List<RealEstate> byMaterialBelowArea(EstateMaterial material, float maxBuildingArea){
+    public List<RealEstate> byMaterialBelowArea(EstateMaterial material, float maxBuildingArea) {
         return bySpec(new AndSpec(new MaterialSpec(material), new BelowAreaSpec(maxBuildingArea)));
     }
 
