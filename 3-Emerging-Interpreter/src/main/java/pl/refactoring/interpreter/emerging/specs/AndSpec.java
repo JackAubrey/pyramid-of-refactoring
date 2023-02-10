@@ -7,19 +7,18 @@ package pl.refactoring.interpreter.emerging.specs;
 import pl.refactoring.interpreter.emerging.RealEstate;
 import pl.refactoring.interpreter.emerging.Spec;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class AndSpec implements Spec {
-    private final Spec firstSpec;
-    private final Spec secondSpec;
+    private final Spec[] specs;
 
-    public AndSpec(Spec firstSpec, Spec secondSpec) {
-        this.firstSpec = firstSpec;
-        this.secondSpec = secondSpec;
+    public AndSpec(Spec... specs) {
+        this.specs = specs;
     }
 
     public boolean isSatisfiedBy(RealEstate estate) {
-        return firstSpec.isSatisfiedBy(estate) &&
-                secondSpec.isSatisfiedBy(estate);
+        return Stream.of(specs).allMatch(s -> s.isSatisfiedBy(estate));
     }
 }
