@@ -9,8 +9,14 @@ import pl.refactoring.interpreter.completed.spec.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static pl.refactoring.interpreter.completed.spec.Specs.ofAreaRange;
+import static pl.refactoring.interpreter.completed.spec.Specs.belowArea;
+import static pl.refactoring.interpreter.completed.spec.Specs.not;
+import static pl.refactoring.interpreter.completed.spec.Specs.placedIn;
+import static pl.refactoring.interpreter.completed.spec.Specs.ofType;
+
 public class RealEstateFinder {
-    private List<RealEstate> repository;
+    private final List<RealEstate> repository;
 
     public RealEstateFinder(List<RealEstate> repository) {
         this.repository = repository;
@@ -24,49 +30,42 @@ public class RealEstateFinder {
 
     @Deprecated
     public List<RealEstate> byBelowArea(float maxBuildingArea){
-        return bySpec(new BelowAreaSpec(maxBuildingArea));
+        return bySpec(belowArea(maxBuildingArea));
     }
 
     @Deprecated
     public List<RealEstate> byMaterial(EstateMaterial material){
-        return bySpec(new MaterialSpec(material));
+        return bySpec(Specs.ofMaterial(material));
     }
 
     @Deprecated
     public List<RealEstate> byMaterialBelowArea(EstateMaterial material, float maxBuildingArea){
-        Spec materialSpec = new MaterialSpec(material);
-        Spec belowAreaSpec = new BelowAreaSpec(maxBuildingArea);
-
-        return bySpec(new AndSpec(materialSpec, belowAreaSpec));
+        return bySpec(new AndSpec(Specs.ofMaterial(material), belowArea(maxBuildingArea)));
     }
 
     @Deprecated
     public List<RealEstate> byPlacement(EstatePlacement placement){
-        return bySpec(new PlacementSpec(placement));
+        return bySpec(placedIn(placement));
     }
 
     @Deprecated
     public List<RealEstate> byAvoidingPlacement(EstatePlacement placement){
-        return bySpec(new NotSpec(new PlacementSpec(placement)));
+        return bySpec(not(placedIn(placement)));
     }
 
     @Deprecated
     public List<RealEstate> byAreaRange(float minArea, float maxArea){
-        return bySpec(new AreaRangeSpec(minArea, maxArea));
+        return bySpec(ofAreaRange(minArea, maxArea));
     }
 
     @Deprecated
     public List<RealEstate> byType(EstateType type){
-        return bySpec(new TypeSpec(type));
+        return bySpec(ofType(type));
     }
 
     @Deprecated
     public List<RealEstate> byVerySpecificCriteria(EstateType type, EstatePlacement placement, EstateMaterial material){
-        Spec typeSpec = new TypeSpec(type);
-        Spec placementSpec = new PlacementSpec(placement);
-        Spec materialSpec = new MaterialSpec(material);
-
-        return bySpec(new AndSpec(typeSpec, placementSpec, materialSpec));
+        return bySpec(new AndSpec(ofType(type), placedIn(placement), Specs.ofMaterial(material)));
     }
 
 }

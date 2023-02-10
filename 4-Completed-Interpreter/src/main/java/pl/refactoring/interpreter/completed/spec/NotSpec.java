@@ -7,10 +7,10 @@ package pl.refactoring.interpreter.completed.spec;
 import pl.refactoring.interpreter.completed.RealEstate;
 import pl.refactoring.interpreter.completed.Spec;
 
-public class NotSpec implements Spec {
-    private Spec spec;
+final class NotSpec implements Spec {
+    private final Spec spec;
 
-    public NotSpec(Spec spec) {
+    NotSpec(Spec spec) {
         this.spec = spec;
     }
 
